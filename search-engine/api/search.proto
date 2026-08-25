@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package atlas.search.v1;
+
+option go_package = "github.com/Manas2006/distributed-systems-portfolio/gen/search/v1;searchv1";
+
+service SearchService {
+  rpc Upsert(UpsertRequest) returns (UpsertResponse);
+  rpc Search(SearchRequest) returns (SearchResponse);
+}
+
+message Document { string id = 1; string title = 2; string body = 3; }
+message UpsertRequest { Document document = 1; string idempotency_key = 2; }
+message UpsertResponse { string shard = 1; uint32 acknowledged_replicas = 2; }
+message SearchRequest { string query = 1; uint32 limit = 2; }
+message SearchResult { string id = 1; string title = 2; double score = 3; }
+message SearchResponse { repeated SearchResult results = 1; uint32 failed_shards = 2; }

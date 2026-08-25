@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.vscode/
+*.log
+bin/
+coverage/
+data/
+out/
+target/
+*.class
+
